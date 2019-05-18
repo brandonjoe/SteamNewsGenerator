@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/store/static/css/main.2cce8147.chunk.css",
-    "main.js": "/store/static/js/main.ac18f059.chunk.js",
-    "main.js.map": "/store/static/js/main.ac18f059.chunk.js.map",
-    "runtime~main.js": "/store/static/js/runtime~main.852bf9be.js",
-    "runtime~main.js.map": "/store/static/js/runtime~main.852bf9be.js.map",
-    "static/js/2.3bcf6832.chunk.js": "/store/static/js/2.3bcf6832.chunk.js",
-    "static/js/2.3bcf6832.chunk.js.map": "/store/static/js/2.3bcf6832.chunk.js.map",
-    "index.html": "/store/index.html",
-    "precache-manifest.5de4a37edb62e17344d49c61e9774c93.js": "/store/precache-manifest.5de4a37edb62e17344d49c61e9774c93.js",
-    "service-worker.js": "/store/service-worker.js",
-    "static/css/main.2cce8147.chunk.css.map": "/store/static/css/main.2cce8147.chunk.css.map"
+    "main.css": "/SteamApp/static/css/main.2cce8147.chunk.css",
+    "main.js": "/SteamApp/static/js/main.ed232b73.chunk.js",
+    "main.js.map": "/SteamApp/static/js/main.ed232b73.chunk.js.map",
+    "runtime~main.js": "/SteamApp/static/js/runtime~main.c83e126d.js",
+    "runtime~main.js.map": "/SteamApp/static/js/runtime~main.c83e126d.js.map",
+    "static/js/2.3bcf6832.chunk.js": "/SteamApp/static/js/2.3bcf6832.chunk.js",
+    "static/js/2.3bcf6832.chunk.js.map": "/SteamApp/static/js/2.3bcf6832.chunk.js.map",
+    "index.html": "/SteamApp/index.html",
+    "precache-manifest.772ed446c9c6b03c2c53c17fae672b15.js": "/SteamApp/precache-manifest.772ed446c9c6b03c2c53c17fae672b15.js",
+    "service-worker.js": "/SteamApp/service-worker.js",
+    "static/css/main.2cce8147.chunk.css.map": "/SteamApp/static/css/main.2cce8147.chunk.css.map"
   }
 }
