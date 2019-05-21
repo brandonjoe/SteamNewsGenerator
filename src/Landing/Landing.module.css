@@ -1,0 +1,89 @@
+.container{
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(0,0,0, .3),
+        rgba(0,0,0, .3)),
+        url("../Media/landingback.jpg");
+    background-size: cover;
+    background-repeat: none;
+    background-position: center;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.input{
+    padding: 1rem;
+    font-size: 1.3rem;
+    background-color: rgba(0,0,0,.3);
+    color: white;
+    font-weight: 200;
+    letter-spacing: 1px;
+}
+.input::placeholder{
+    color: white;
+    font-weight: 200;
+    letter-spacing: 1px;
+}
+.button{
+    font-size: 1.3rem;
+    border: 1px solid white;
+    padding: .5rem;
+    color: white;
+    text-decoration: none !important;
+    transition: all .2s;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+.button:hover{
+    transform: scale(1.1);
+
+}
+.title{
+    left: 50%;
+    top: 10rem;
+    transform: translateX(-50%);
+    position: absolute;
+    color: white;
+    background-color: rgba(0,0,0, .3);
+    padding: 2rem;
+}
+.header{
+    font-size: 3rem;
+    letter-spacing: 3px;
+    font-weight: 300;
+}
+.subheader{
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    font-weight: 300;
+}
+@media only screen and (max-width: 768px){
+    .title{
+        top: 5rem;
+
+    }
+    .header{
+        font-size: 2rem;
+    
+    }
+    .subheader{
+        font-size: 1rem;
+    }
+}
+@media only screen and (max-height: 750px){
+    .title{
+        top: 0;
+    }
+}
