@@ -2,7 +2,6 @@ import React from 'react';
 import {Switch, Route} from  'react-router-dom';
 import './App.css';
 import Landing from './Landing/Landing.js'
-import Results from './Results/Results.js'
 import Page from './Page/Page.js'
 
 function App() {

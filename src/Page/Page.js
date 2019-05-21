@@ -12,7 +12,7 @@ class Page extends Component {
             games you've put more than 100 hours in. If the list is small, check
             your steam privacy settings!
           </div>
-           <Link style={{'text-decoration': 'none'}}  className={classes.link} to={`/`}><div className={classes.button}>New Search</div> </Link>
+           <Link style={{'textDecoration': 'none'}}  className={classes.link} to={`/`}><div className={classes.button}>New Search</div> </Link>
           <Results steamID={this.props.location.pathname} />
         </div>
 

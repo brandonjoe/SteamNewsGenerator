@@ -29,9 +29,9 @@ class Landing extends Component {
           <div className={classes.header}>Steam News Generator</div>
           <div className={classes.subheader}>Recent news for games you've played!</div>
         </div>
-        <div class={classes.main}>
+        <div className={classes.main}>
           <input className={classes.input} type="search" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} placeholder="Enter steam ID"/>
-      <Link style={{'text-decoration': 'none'}}  className={classes.link} to={`/${this.state.inputValue}`}><div className={classes.button}>search</div> </Link></div>
+      <Link style={{'textDecoration': 'none'}}  className={classes.link} to={`/${this.state.inputValue}`}><div className={classes.button}>search</div> </Link></div>
         
       </div>
     );
