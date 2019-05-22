@@ -14,20 +14,13 @@ To use this, all you need to do is input your 17 digit steam ID. It's usually on
 
 
 
-### Steam API
-
-
-
-I think this deserves its own section. This is probably one of the worst API's I've worked with, and it's sad because I love Steam. I expected more from a multi-billion dollar company. A lot of the games don't have game titles, so I couldn't put an associated game related to it. The description is returned in HTML code and truncates X amount of characters off of it. So you can put use this to put in HTML code, but what happens if it truncates half of HTML image link? It wouldn't render and throw an error. I do like how I have basically unlimited requests for a free API. 
-
 
 
 ### Future plans
 
 
 
-I really wanted to add images, related game, and description to each news article, but in the future, the only feasible option of these 3 are to add the related game. The problem is that I would need to access the information from my own database that has all the correct game title names (steam's titles are incomplete). I would also like to incorporate entering in steam URLs and using regex to parse the steam ID out of it. The problem is that some steam URLs have custom names to them, and that would throw everything off. 
-
+I really wanted to add a description to each news article, but the with the current state of their API, it'll require crazy regex. The problem is that the description is returned in a string of HTML code, but it's also truncated to about 300 characters. If part of that string is truncated the wrong way, it can return an incomplete part of HTML code. An incomplete sentence can be resolved with "..." but you can't fix incomplete HTML code without knowing what the rest of it is. It is certainly possible to use regex to detect HTML code near the end, and delete it, but these are just the first couple sentences of an article, not a summary. 
 
 
 ### Tech
