@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a7cacbe9c54229a0940864becca2ba37",
+    "revision": "e77733afde821f722fe59b57c0b2a9a4",
     "url": "/SteamApp/index.html"
   },
   {
@@ -8,15 +8,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/SteamApp/static/css/2.5cd99e77.chunk.css"
   },
   {
-    "revision": "fef823de6d53829a5e96",
-    "url": "/SteamApp/static/css/main.24b327cc.chunk.css"
+    "revision": "00c0f0155efecca09f44",
+    "url": "/SteamApp/static/css/main.c1c02b27.chunk.css"
   },
   {
     "revision": "868db33142c7440f2835",
     "url": "/SteamApp/static/js/2.59ba95aa.chunk.js"
   },
   {
-    "revision": "fef823de6d53829a5e96",
+    "revision": "00c0f0155efecca09f44",
     "url": "/SteamApp/static/js/main.0bc4799c.chunk.js"
   },
   {
