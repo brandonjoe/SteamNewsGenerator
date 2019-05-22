@@ -7,7 +7,7 @@
     justify-content: space-around;
     align-items: center;
     align-content: center;
-   
+   padding: 2rem;
 }
 .articles{
     height: 100%;
@@ -21,8 +21,15 @@
     transform: scale(1.1)
 }
 .title{
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    background: rgba(255, 255,255, 0.2);
+    padding: .5rem;
 }
 .link{
     color: white;
+}
+.private{
+    font-size: 1.3rem;
+    width: 30%;
+    margin: 0 auto;
 }
