@@ -14,7 +14,7 @@ class Results extends Component {
     this.state = {
       articles: [],
       isDone: false,
-      search: ''
+      search: ""
     };
   }
 
@@ -85,7 +85,9 @@ class Results extends Component {
     getstuff().then(results => {
       // get the list of games
       const getNames = fetch(
-        `https://ancient-dusk-43980.herokuapp.com/${this.props.steamID}/gamelist`
+        `https://ancient-dusk-43980.herokuapp.com/${
+          this.props.steamID
+        }/gamelist`
       )
         .then(res => res.json())
         .then(data => {
@@ -115,7 +117,7 @@ class Results extends Component {
       getNames.then(val => {
         console.log(gamelist);
         console.log(list);
-        
+
         Promise.all(getNews).then(values => {
           // once our array of promises is fulfille
           list.sort((a, b) => {
@@ -125,16 +127,15 @@ class Results extends Component {
           gamelist.map(game => {
             list.map(article => {
               if (article.appid == game.appid) {
-                article.appid = game.name;
+                article.feedname = game.name;
               }
             });
           });
           list.forEach(article => {
-            if(article.author == ""){
-              article.author = article.appid
+            if (article.author == "") {
+              article.author = "In article";
             }
-
-          })
+          });
           let newList = [];
           list.forEach(article => {
             let ts = Math.round(new Date().getTime() / 1000);
@@ -158,63 +159,80 @@ class Results extends Component {
       });
     });
   }
-updateSearch(event) {
-  this.setState({
-    search: event.target.value
-  })
-}
+  updateSearch(event) {
+    this.setState({
+      search: event.target.value
+    });
+  }
   render() {
+    setTimeout(() => {
+      console.log(this.state)
+    }, 3000)
+    let filtergames = this.state.articles.filter(game => {
+      return (
+        game.feedname.toLowerCase().indexOf(this.state.search.toLowerCase()) !==
+        -1
+      );
+    });
+    return (
+      <div>
+        <input
+          type="text"
+          className={classes.input}
+          placeholder="Filter games"
+          value={this.state.search}
+          onChange={evt => this.updateSearch(evt)}
+        />
+        <div className={classes.main}>
 
-    let filtergames = this.state.articles.filter(
-     (game) => {
-       return game.appid.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-     }
-    )
-    return (<div>
-    <input type="text" className={classes.input} placeholder="Filter games" value={this.state.search} onChange={evt => this.updateSearch(evt)}></input>
-      <div className={classes.main}>
-      
-        {this.state.articles.length === 0 && this.state.isDone === true ? ( //This is used to make sure that we got data back, if we didn't it means their profile is private and they need to fix that.
-          <div className={classes.private}>
-            Unable to retrieve data from server. Check{" "}
-            <span>
-              <a
-                className={classes.settings}
-                style={{ textDecoration: "none", color: "grey" }}
-                href="https://steamcommunity.com/my/edit/settings"
-              >
-                here
-              </a>
-            </span>{" "}
-            to make sure your profile is public or try a different steam ID
-          </div>
-        ) : (
-          filtergames.map((item, index) => {
-            //loop through each article, this doesn't return null because we initialized this.state.articles as
-            return (
-              <div
-                key={index}
-                onClick={() => window.open(`${item.url}`, "_blank")}
-                className={classes.articles}
-              >
-                <div className={classes.title}>{item.title}</div>
-                <div className={classes.appid}>Game: {item.appid}</div>
-                <div className={classes.autor}>Author: {item.author}</div>
-                <div className={classes.feed}>Feed: {item.feedlabel}</div>
-                <div className={classes.date}>Date: {item.date}</div>
+          {(this.state.articles.length === 0 && this.state.isDone === false) ?
+          ( <div className={classes.loadcontainer}><div className={classes.ldsdefault}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div className={classes.loading}>Loading your articles...</div></div>
+            ) : (this.state.articles.length === 0 && this.state.isDone === true) ? ( //This is used to make sure that we got data back, if we didn't it means their profile is private and they need to fix that.
+            <div className={classes.private}>
+              Unable to retrieve data from server. Check{" "}
+              <span>
                 <a
-                  style={{ textDecoration: "none" }}
-                  href={`${item.url}`}
-                  target="_blank"
-                  className={classes.link}
+                  className={classes.settings}
+                  style={{ textDecoration: "none", color: "grey" }}
+                  href="https://steamcommunity.com/my/edit/settings"
                 >
-                  Click for full article
+                  here
                 </a>
-              </div>
-            );
-          })
-        )}
-      </div>
+              </span>{" "}
+              to make sure your profile is public or try a different steam ID
+            </div>
+          ) : (
+            filtergames.map((item, index) => {
+              //loop through each article, this doesn't return null because we initialized this.state.articles as
+              return (
+                <div
+                  key={index}
+                  onClick={() => window.open(`${item.url}`, "_blank")}
+                  className={classes.articles}
+                >
+                  <div className={classes.title}>{item.title}</div>
+                  <div classes={classes.main2}>
+                    <div className={classes.left}>
+                      <div className={classes.appid}>Game: {item.feedname}</div>
+                      <div className={classes.autor}>Author: {item.author}</div>
+                      <div className={classes.feed}>Feed: {item.feedlabel}</div>
+                      <div className={classes.date}>Date: {item.date}</div>
+                      <div className={classes.link}>Click for full article</div>
+                    </div>
+                   
+                      <img
+                      
+                      src={`https://steamcdn-a.akamaihd.net/steam/apps/${
+                        item.appid
+                      }/header.jpg`}
+                      alt={`Image of ${item.feedname} couldn't load`}
+                    />
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
       </div>
     );
   }

@@ -61,3 +61,19 @@
     width: 90%;
   }
 }
+@media only screen and (max-width: 588px){
+  .title{
+    width: 25rem;
+    margin: 0 auto;
+    padding: .5rem ;
+
+  }
+}
+@media only screen and (max-width: 450px){
+  .title{
+    width: 20rem;
+    margin: 0 auto;
+    padding: .5rem ;
+
+  }
+}
