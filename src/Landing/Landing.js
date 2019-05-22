@@ -11,24 +11,44 @@ class Landing extends Component {
     this.state = {
       inputValue: "",
       value: 10,
+      months: 6,
       disabled: true,
-      s: "s"
+      s: "s",
+      m: "s"
     };
   }
   componentDidMount() {
-    fetch(`https://ancient-dusk-43980.herokuapp.com/`) //I make this call to the server to wake up heroku's free server.
+
+    fetch(`https://ancient-dusk-43980.herokuapp.com/440/news`) //I make this call to the server to wake up heroku's free server.
       .then(res => res.json()) //This call does nothing, the freeplan puts the server to sleep after 30 minutes
       .then(data => {
         //This call will wake the server up so by the time the user gets to the next page, it's alread loaded.
         console.log(data);
       });
   }
-
+  handleChangeMonths = months => {
+    this.setState({
+      months: months
+    })
+     
+    if (months == 1) {
+      //toggles between "hours" and hour"
+      this.setState({
+        m: ""
+      });
+    } else {
+      this.setState({
+        m: "s"
+      });
+    }
+    console.log(this.state.months)
+  }
   handleChange = value => {
     this.setState({
       //set the state as value
       value: value
     });
+    
     if (value == 1) {
       //toggles between "hours" and hour"
       this.setState({
@@ -46,27 +66,24 @@ class Landing extends Component {
       this.setState({
         disabled: false
       });
-      console.log(evt.target.value.length);
-      console.log(this.state.disabled);
     } else {
       this.setState({
         disabled: true
       });
-      console.log(evt.target.value.length);
-      console.log(this.state.disabled);
+
     }
     this.setState({
       inputValue: evt.target.value
     });
   }
   render() {
-    const { value } = this.state;
+    const { value, months } = this.state;
     return (
       <div className={classes.container}>
         <div className={classes.title}>
           <div className={classes.header}>Steam News Generator</div>
           <div className={classes.subheader}>
-            Recent news for your most recent and favorite games!
+            Recent news within <span className={classes.amount}>{months}</span> month{this.state.m} for your most recent and favorite games!
           </div>
         </div>
         <div className={classes.main}>
@@ -85,15 +102,26 @@ class Landing extends Component {
               value={value}
               onChange={this.handleChange}
             />
-            <Link
+            <div className="slider">
+              <Slider
+                min={1}
+                max={12}
+                step={1}
+                value={months}
+                onChange={this.handleChangeMonths}
+              />
+              <div className="value">{value}</div>
+              <Link
               style={{ textDecoration: "none" }}
               className={classes.link}
-              to={`/${this.state.inputValue}/${this.state.value}`}
+              to={`/${this.state.inputValue}/${this.state.value}/${this.state.months}`}
             >
               <button disabled={this.state.disabled} className={classes.button}>
-                Search games above {value} hour{this.state.s}
+                Search games above <span className={classes.hour}>{value}</span> hour{this.state.s}
               </button>{" "}
             </Link>
+            </div>
+           
           </div>
         </div>
       </div>
