@@ -61,7 +61,7 @@ class Landing extends Component {
     }
   };
 
-  updateInputValue(evt) {
+  updateInputValue(evt) { //checks to make sure that the user inputs 17 digits
     if (evt.target.value.length === 17) {
       this.setState({
         disabled: false

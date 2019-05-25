@@ -14,11 +14,13 @@ class Results extends Component {
     this.state = {
       articles: [],
       isDone: false,
-      search: ""
+      search: "",
+      name: ""
     };
   }
 
   componentDidMount() {
+    
     const getstuff = async () => {
       const getGames = () => {
         return fetch(
@@ -82,16 +84,16 @@ class Results extends Component {
 
     let list = [];
     let gamelist = [];
-    getstuff().then(results => {
+    getstuff().then(results => { 
       // get the list of games
       const getNames = fetch(
         `https://ancient-dusk-43980.herokuapp.com/${
           this.props.steamID
-        }/gamelist`
+        }/gamelist` //returns a list of every single steam appid and gamename
       )
         .then(res => res.json())
         .then(data => {
-          data.applist.apps.forEach(item => {
+          data.applist.apps.forEach(item => { //if the appid matches the appid from our fetched data, pass the name over to the list
             let game = {
               appid: item.appid,
               name: item.name
@@ -115,9 +117,6 @@ class Results extends Component {
       );
 
       getNames.then(val => {
-        console.log(gamelist);
-        console.log(list);
-
         Promise.all(getNews).then(values => {
           // once our array of promises is fulfille
           list.sort((a, b) => {
@@ -125,19 +124,27 @@ class Results extends Component {
             return b.date - a.date;
           });
           gamelist.map(game => {
-            list.map(article => {
+            list.map(article => { //this operation takes a while, but basically sets the gamename to an updated game name from steam
               if (article.appid == game.appid) {
                 article.feedname = game.name;
               }
             });
           });
-          list.forEach(article => {
+          list.forEach(article => { // some articles don't have any authors in the preview, tells the user click the article if they want need to know who the author is
             if (article.author == "") {
               article.author = "In article";
             }
           });
+          let list2 = list; // sometimes steam's api returns 2 of the same articles from "rock, paper, shotgun", this removes one of them. 
+          list.forEach((article, index) => {
+            list2.forEach((article2, index2) => {
+              if(article.title == article2.title) {
+                list.splice(index,1)
+              }
+            })
+          })
           let newList = [];
-          list.forEach(article => {
+          list.forEach(article => { //this first turns turns everything to unix, and returns everything before a certain date
             let ts = Math.round(new Date().getTime() / 1000);
             ts = ts - this.props.months * 2582000;
             if (article.date > ts) {
@@ -159,15 +166,12 @@ class Results extends Component {
       });
     });
   }
-  updateSearch(event) {
+  updateSearch(event) { //passes search filter to state
     this.setState({
       search: event.target.value
     });
   }
-  render() {
-    setTimeout(() => {
-      console.log(this.state)
-    }, 3000)
+  render() { //let the showed games only be games within the search filter, if nothing's in it, then show everything
     let filtergames = this.state.articles.filter(game => {
       return (
         game.feedname.toLowerCase().indexOf(this.state.search.toLowerCase()) !==
@@ -185,9 +189,9 @@ class Results extends Component {
         />
         <div className={classes.main}>
 
-          {(this.state.articles.length === 0 && this.state.isDone === false) ?
+          {(this.state.articles.length === 0 && this.state.isDone === false) ? // show the loading spinner
           ( <div className={classes.loadcontainer}><div className={classes.ldsdefault}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div className={classes.loading}>Loading your articles...</div></div>
-            ) : (this.state.articles.length === 0 && this.state.isDone === true) ? ( //This is used to make sure that we got data back, if we didn't it means their profile is private and they need to fix that.
+            ) : (this.state.articles.length === 0 && this.state.isDone === true) ? ( // if nothing comes back, the length is 0, and that means their profile is private. 
             <div className={classes.private}>
               Unable to retrieve data from server. Check{" "}
               <span>
@@ -199,11 +203,11 @@ class Results extends Component {
                   here
                 </a>
               </span>{" "}
-              to make sure your profile is public or try a different steam ID
+              to make sure your profile settings are public or try a different steam ID.
             </div>
           ) : (
             filtergames.map((item, index) => {
-              //loop through each article, this doesn't return null because we initialized this.state.articles as
+              //loop through each filtered, this doesn't return null because we initialized this.state.articles as an empty array
               return (
                 <div
                   key={index}
@@ -225,7 +229,7 @@ class Results extends Component {
                       src={`https://steamcdn-a.akamaihd.net/steam/apps/${
                         item.appid
                       }/header.jpg`}
-                      alt={`Image of ${item.feedname} couldn't load`}
+                      alt={`Image of ${item.feedname} couldn't load`} //if the image can't load, the user is notified. 
                     />
                   </div>
                 </div>

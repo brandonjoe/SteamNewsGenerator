@@ -4,8 +4,6 @@
   "private": true,
   "homepage": "https://brandonjoe.github.io/SteamApp/",
   "dependencies": {
-    "animate.css": "^3.7.0",
-    "classnames": "^2.2.6",
     "gh-pages": "^2.0.1",
     "react": "^16.8.6",
     "react-animate-on-scroll": "^2.1.5",
