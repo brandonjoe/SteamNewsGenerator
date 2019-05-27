@@ -20,7 +20,7 @@ To use this, all you need to do is input your 17 digit steam ID. It's usually on
 
 
 
-I really wanted to add a description to each news article, but the with the current state of their API, it'll require crazy regex. The problem is that the description is returned in a string of HTML code, but it's also truncated to about 300 characters. If part of that string is truncated the wrong way, it can return an incomplete part of HTML code. An incomplete sentence can be resolved with "..." but you can't fix incomplete HTML code without knowing what the rest of it is. It is certainly possible to use regex to detect HTML code near the end, and delete it, but these are just the first couple sentences of an article, not a summary. 
+I really wanted to add a description to each news article, but the with the current state of their API, it'll require crazy regex. The problem is that the description is returned in a string of HTML code, but it's also truncated to about 300 characters. If part of that string is truncated the wrong way, it can return an incomplete part of HTML code. An incomplete sentence can be resolved with "..." but you can't fix incomplete HTML code without knowing what the rest of it is. It is certainly possible to use regex to detect HTML code near the end, and delete it, but these are just the first couple sentences of an article, not a summary.  I also want to perform real validation so that it only accepts SteamIDs. Right now someone can put anything inside there with 17 characters, and it'll accept and throw an error back. 
 
 
 ### Tech
@@ -29,7 +29,7 @@ I really wanted to add a description to each news article, but the with the curr
 
 ```
 
-Javascript/React, CSS, Node.js/Express. 
+Javascript/React, HTML/CSS, Node.js/Express. 
 
 ```
 
