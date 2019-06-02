@@ -5,6 +5,10 @@
 Steam News Generator, will give you news related to games you've played within the past 2 weeks, as well as games you've put a lot of hours in. It's an idea that started out with wanting to make something unique that hasn't been done already, as well as wanting to make something I'm passionate about (gaming). It returns news for you in chronological order within the given parameters that you set. It's running off a node.js server in the backend (Steam API rejects fetches called from a browser) and React in the front-end. 
 
 
+### Demo
+
+[Live Demo](https://brandonjoe.github.io/SteamApp/)
+
 
 ### General Use
 
@@ -33,6 +37,3 @@ Javascript/React, HTML/CSS, Node.js/Express.
 
 ```
 
-### Demo
-
-[Live Demo](https://brandonjoe.github.io/SteamApp/)
