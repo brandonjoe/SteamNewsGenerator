@@ -7,7 +7,7 @@ Steam News Generator, will give you news related to games you've played within t
 
 ### Demo
 
-[Live Demo](https://brandonjoe.github.io/SteamApp/)
+[Live Demo](https://steamnews.info/)
 
 
 ### General Use
